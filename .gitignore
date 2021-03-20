@@ -1,1 +1,5 @@
 Assets/
+/bin/
+.classpath
+.project
+
