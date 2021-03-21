@@ -26,12 +26,9 @@ public class Database {
 		Statement st = null;
 		try {
 			conn = getConnection();
-			String query = "CREATE TABLE employee (id int, name varchar(20))";
+			String query = "CREATE TABLE chef (id int, name varchar(20))";
 			st = conn.createStatement();
-			int row = st.executeUpdate(query);
-			if(row > 0) {
-				System.out.println("row has been inserted");
-			}
+			st.executeUpdate(query);
 			System.out.println("Database created");
 		}catch(Exception e) {
 			String query = "INSERT INTO employee (id, name) VALUES(2314, 'faraz') ";
