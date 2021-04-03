@@ -14,20 +14,27 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import java.sql.*;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class NewGame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField nameTxtbox;
-
+	static NewGame frame;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void start() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NewGame frame = new NewGame();
+					frame = new NewGame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -88,5 +95,29 @@ public class NewGame extends JFrame {
 		Image bannerImg = new ImageIcon(this.getClass().getResource("/n2.png")).getImage();
 		loanPic.setIcon(new ImageIcon(bannerImg));
 		contentPane.add(loanPic);
+		
+		JButton btnNewButton = new JButton("Take Loan");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name = nameTxtbox.getText();
+				int loanVal = Integer.parseInt(loanTakeSpin.getValue().toString());
+				try {
+					Database.st = Database.conn.createStatement();
+					String query = "truncate table players";
+					
+					Database.st.executeUpdate(query);
+					query = "Insert into players values ('"+name+"',"+loanVal+","+loanVal+",1)";
+					Database.st.executeUpdate(query);
+					frame.dispose();
+					StockGather.start();
+					
+				}catch(Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 19));
+		btnNewButton.setBounds(333, 198, 134, 50);
+		contentPane.add(btnNewButton);
 	}
 }

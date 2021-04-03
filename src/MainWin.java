@@ -13,15 +13,22 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import java.sql.*;
 
 public class MainWin {
 
-	private JFrame frame;
+	JFrame frame;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void start() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -58,6 +65,9 @@ public class MainWin {
 		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				NewGame.start();
+				
 			}
 		});
 		btnStart.setBounds(304, 240, 204, 58);

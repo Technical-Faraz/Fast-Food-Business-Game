@@ -14,19 +14,33 @@ import java.awt.Insets;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import java.sql.*;
 
 public class StockGather extends JFrame {
 
 	private JPanel contentPane;
-
+	static StockGather frame;
+	static boolean toPay = false;
+	static	int currBalance = 0;
+	static int currDay = 0;
+	static int totalAmount; // amount to pay 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void start() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StockGather frame = new StockGather();
+					frame = new StockGather();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,6 +53,19 @@ public class StockGather extends JFrame {
 	 * Create the frame.
 	 */
 	public StockGather() {
+		//Database queries
+		
+		try {
+			String query = "Select * from players";
+			Database.st = Database.conn.createStatement();
+			ResultSet rs = Database.st.executeQuery(query);
+			rs.next();
+			currBalance = rs.getInt(3);
+			currDay = rs.getInt(4);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1077, 671);
 		contentPane = new JPanel();
@@ -49,7 +76,7 @@ public class StockGather extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Account Balance:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel.setBounds(10, 115, 220, 66);
+		lblNewLabel.setBounds(28, 115, 220, 66);
 		contentPane.add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
@@ -123,8 +150,8 @@ public class StockGather extends JFrame {
 		panel.add(nameLbl);
 		nameLbl.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		
-		JLabel priceLbl = new JLabel("price");
-		priceLbl.setBounds(190, 45, 41, 23);
+		JLabel priceLbl = new JLabel("price: 700 Rs");
+		priceLbl.setBounds(190, 45, 120, 23);
 		panel.add(priceLbl);
 		priceLbl.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		
@@ -144,9 +171,9 @@ public class StockGather extends JFrame {
 		nameLbl_1.setBounds(190, 157, 134, 23);
 		panel.add(nameLbl_1);
 		
-		JLabel priceLbl_1 = new JLabel("price");
+		JLabel priceLbl_1 = new JLabel("price: 600 Rs");
 		priceLbl_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		priceLbl_1.setBounds(190, 191, 41, 23);
+		priceLbl_1.setBounds(190, 191, 120, 23);
 		panel.add(priceLbl_1);
 		
 		JLabel disp_1 = new JLabel("Stock");
@@ -164,9 +191,9 @@ public class StockGather extends JFrame {
 		lblBbqPizza.setBounds(190, 285, 109, 23);
 		panel.add(lblBbqPizza);
 		
-		JLabel priceLbl_2 = new JLabel("price");
+		JLabel priceLbl_2 = new JLabel("price: 1000 Rs");
 		priceLbl_2.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		priceLbl_2.setBounds(190, 319, 41, 23);
+		priceLbl_2.setBounds(190, 319, 146, 23);
 		panel.add(priceLbl_2);
 		
 		JLabel disp_2 = new JLabel("Stock");
@@ -184,9 +211,9 @@ public class StockGather extends JFrame {
 		lblCheesePizza.setBounds(190, 431, 109, 23);
 		panel.add(lblCheesePizza);
 		
-		JLabel priceLbl_3 = new JLabel("price");
+		JLabel priceLbl_3 = new JLabel("price: 1200 Rs");
 		priceLbl_3.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		priceLbl_3.setBounds(190, 465, 41, 23);
+		priceLbl_3.setBounds(190, 465, 134, 23);
 		panel.add(priceLbl_3);
 		
 		JLabel disp_3 = new JLabel("Stock");
@@ -204,9 +231,9 @@ public class StockGather extends JFrame {
 		lblCocaCola.setBounds(452, 11, 109, 23);
 		panel.add(lblCocaCola);
 		
-		JLabel priceLbl_4 = new JLabel("price");
+		JLabel priceLbl_4 = new JLabel("price: 80 Rs");
 		priceLbl_4.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		priceLbl_4.setBounds(452, 45, 41, 23);
+		priceLbl_4.setBounds(452, 45, 120, 23);
 		panel.add(priceLbl_4);
 		
 		JLabel disp_4 = new JLabel("Stock");
@@ -224,9 +251,9 @@ public class StockGather extends JFrame {
 		lblMilkShake.setBounds(452, 168, 109, 23);
 		panel.add(lblMilkShake);
 		
-		JLabel priceLbl_5 = new JLabel("price");
+		JLabel priceLbl_5 = new JLabel("price: 300 Rs");
 		priceLbl_5.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		priceLbl_5.setBounds(452, 202, 41, 23);
+		priceLbl_5.setBounds(452, 202, 120, 23);
 		panel.add(priceLbl_5);
 		
 		JLabel disp_5 = new JLabel("Stock");
@@ -244,9 +271,9 @@ public class StockGather extends JFrame {
 		lblIceCream.setBounds(494, 319, 109, 23);
 		panel.add(lblIceCream);
 		
-		JLabel priceLbl_6 = new JLabel("price");
+		JLabel priceLbl_6 = new JLabel("price: 600 Rs");
 		priceLbl_6.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		priceLbl_6.setBounds(494, 353, 41, 23);
+		priceLbl_6.setBounds(494, 353, 120, 23);
 		panel.add(priceLbl_6);
 		
 		JLabel disp_6 = new JLabel("Stock");
@@ -264,9 +291,9 @@ public class StockGather extends JFrame {
 		lblPepse.setBounds(500, 479, 109, 23);
 		panel.add(lblPepse);
 		
-		JLabel priceLbl_7 = new JLabel("price");
+		JLabel priceLbl_7 = new JLabel("price: 100 Rs");
 		priceLbl_7.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		priceLbl_7.setBounds(500, 513, 41, 23);
+		priceLbl_7.setBounds(500, 513, 114, 23);
 		panel.add(priceLbl_7);
 		
 		JLabel disp_7 = new JLabel("Stock");
@@ -284,9 +311,9 @@ public class StockGather extends JFrame {
 		lblSalad.setBounds(634, 144, 109, 23);
 		panel.add(lblSalad);
 		
-		JLabel priceLbl_8 = new JLabel("price");
+		JLabel priceLbl_8 = new JLabel("price: 500 Rs");
 		priceLbl_8.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		priceLbl_8.setBounds(634, 178, 41, 23);
+		priceLbl_8.setBounds(634, 178, 120, 23);
 		panel.add(priceLbl_8);
 		
 		JLabel disp_8 = new JLabel("Stock");
@@ -304,9 +331,9 @@ public class StockGather extends JFrame {
 		lblPasta.setBounds(634, 456, 109, 23);
 		panel.add(lblPasta);
 		
-		JLabel priceLbl_9 = new JLabel("price");
+		JLabel priceLbl_9 = new JLabel("price: 400 Rs");
 		priceLbl_9.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		priceLbl_9.setBounds(634, 490, 41, 23);
+		priceLbl_9.setBounds(634, 490, 120, 23);
 		panel.add(priceLbl_9);
 		
 		JLabel disp_9 = new JLabel("Stock");
@@ -319,24 +346,90 @@ public class StockGather extends JFrame {
 		stock_9.setBounds(693, 528, 61, 25);
 		panel.add(stock_9);
 		
-		JLabel currMoney = new JLabel("Account Balance");
+		JLabel currMoney = new JLabel(Integer.toString(currBalance));
 		currMoney.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		currMoney.setBounds(10, 208, 220, 66);
+		currMoney.setBounds(28, 175, 220, 66);
 		contentPane.add(currMoney);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Total Shopping:");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_1_1.setBounds(10, 375, 220, 66);
+		lblNewLabel_1_1.setBounds(28, 273, 220, 66);
 		contentPane.add(lblNewLabel_1_1);
 		
-		JLabel totalShop = new JLabel("Account Balance");
+		JLabel totalShop = new JLabel("0");
 		totalShop.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		totalShop.setBounds(10, 467, 220, 66);
+		totalShop.setBounds(28, 331, 220, 66);
 		contentPane.add(totalShop);
 		
-		JLabel dayLbl = new JLabel("Day 1");
+		JLabel dayLbl = new JLabel(Integer.toString(currDay));
 		dayLbl.setFont(new Font("Segoe UI Black", Font.PLAIN, 37));
-		dayLbl.setBounds(10, 11, 206, 66);
+		dayLbl.setBounds(108, 11, 124, 66);
 		contentPane.add(dayLbl);
+		
+		JSpinner stocks[] = {stock,stock_1,stock_2,stock_3,stock_7,stock_4,stock_9,stock_8,stock_6,stock_5};
+		
+		JButton checkAmountBtn = new JButton("Check total money");
+		checkAmountBtn.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		checkAmountBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String query = "truncate table stocks";
+					Database.st.executeUpdate(query);
+					totalAmount = 0;
+					for(int i =0; i <10; i++) {
+						int quantityOfItems = Integer.parseInt(stocks[i].getValue().toString());
+						if(quantityOfItems != 0) {
+							query = "insert into stocks values ("+(i+1)+","+quantityOfItems+")" ;
+							Database.st.executeUpdate(query);
+						}
+						totalAmount += (Integer.parseInt(Database.fprice[i]) * quantityOfItems);
+					}
+					totalShop.setText(Integer.toString(totalAmount));
+					toPay = true;
+				}catch(Exception e3) {
+					e3.printStackTrace();
+				}
+			}
+		});
+		checkAmountBtn.setBounds(28, 452, 206, 47);
+		contentPane.add(checkAmountBtn);
+		
+		JButton payAmountBtn = new JButton("Pay the amount");
+		payAmountBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(toPay == true) {
+					if(currBalance > totalAmount) {
+						currBalance -= totalAmount;
+						try {
+							String query = "update players set bal = "+currBalance;
+							Database.st.executeUpdate(query);
+						}catch(Exception e2) {
+							e2.printStackTrace();
+						}
+						JOptionPane.showMessageDialog(null, "Thanks for your payment now you have "+currBalance+" Rs in your account!",
+					               "Click on the check payment button",1);
+						frame.dispose();
+						Selling.start();
+						toPay = false;
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "You haven't enough money to pay",
+					               "Click on the check payment button",2);
+						
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "You have to check the payment before paying",
+				               "Click on the check payment button",2);
+				}
+			}
+		});
+		payAmountBtn.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		payAmountBtn.setBounds(28, 510, 204, 47);
+		contentPane.add(payAmountBtn);
+		
+		JLabel lable1 = new JLabel("DAY");
+		lable1.setFont(new Font("Segoe UI Black", Font.PLAIN, 37));
+		lable1.setBounds(10, 11, 93, 66);
+		contentPane.add(lable1);
 	}
 }
