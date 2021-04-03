@@ -1,6 +1,10 @@
 // database connectivity
 import java.sql.Connection;
 import java.sql.DriverManager;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.sql.*;
 
 public class Database {
@@ -27,18 +31,31 @@ public class Database {
 		Statement st = null;
 		try {
 			conn = getConnection();
-			String query = "CREATE TABLE chef (id int, name varchar(20))";
+			//Create complete Database
+			String query = "CREATE TABLE players(pname varchar(10), loan int,bal int, day int)";
 			st = conn.createStatement();
 			st.executeUpdate(query);
-			System.out.println("Database created");
+			st.close();
+//
+//			query = "CREATE TABLE items(fid int(3) primary key ,fname varchar(10), price int(7))";
+//			st.executeUpdate(query);
+//
+//			query = "CREATE TABLE stocks(fid int(3) foreign key references items(fid),amount int(3))";
+//			st.executeUpdate(query);
+
+			
+			JOptionPane.showMessageDialog(null, "Database Created",
+		               "Welcome",1);
+			new MainWin();
 		}catch(Exception e) {
-			String query = "INSERT INTO employee (id, name) VALUES(2314, 'faraz') ";
-			st = conn.createStatement();
-			int row = st.executeUpdate(query);
-			if(row > 0) {
-				System.out.println("row has been inserted");
-			}
-			System.out.println("Connected with server");
+			new MainWin();
+//			String query = "INSERT INTO employee (id, name) VALUES(2314, 'faraz') ";
+//			st = conn.createStatement();
+//			int row = st.executeUpdate(query);
+//			if(row > 0) {
+//				System.out.println("row has been inserted");
+//			}
+//			System.out.println("Connected with server");
 		}
 		
 		st.close();
@@ -47,11 +64,17 @@ public class Database {
 	
 	public static Connection getConnection() throws Exception{
 		try {
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			JFrame f;  
+			f=new JFrame();   
+			String name=JOptionPane.showInputDialog(f,"Enter the name of your scott database");     
+			
+			String url = "jdbc:oracle:thin:@localhost:1521:"+name.toLowerCase();
 			String username = "scott";
 			String pass ="tiger";
 			Connection conn = DriverManager.getConnection(url, username,pass);
-			System.out.println("Connected");
+			JOptionPane.showMessageDialog(null, "Database Connected",
+		               "Welcome",1);
+			
 			return conn;
 		}catch(Exception e) {System.out.println(e);}
 		return null;
