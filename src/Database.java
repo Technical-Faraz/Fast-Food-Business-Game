@@ -32,23 +32,29 @@ public class Database {
 		try {
 			conn = getConnection();
 			//Create complete Database
-			String query = "CREATE TABLE players(pname varchar(10), loan int,bal int, day int)";
+			String query = "CREATE TABLE players(pname varchar(20), loan int,bal int, day int)";
 			st = conn.createStatement();
 			st.executeUpdate(query);
-			st.close();
-//
-//			query = "CREATE TABLE items(fid int(3) primary key ,fname varchar(10), price int(7))";
-//			st.executeUpdate(query);
-//
-//			query = "CREATE TABLE stocks(fid int(3) foreign key references items(fid),amount int(3))";
-//			st.executeUpdate(query);
 
-			
+			query = "CREATE TABLE items(fid int primary key ,fname varchar(20), price int)";
+			st.executeUpdate(query);
+
+			query = "CREATE TABLE stocks(fid int references items(fid),amount int)";
+			st.executeUpdate(query);
+
+			String fnames[] = {"beef burger","cheese burger", "bbq pizza","cheese pizza",
+					"pepsi","coca cola","pasta","salad","ice cream","milk shake"};
+			String fprice[]= {"700","600","1000","1200","100","80","400","500","600","300"};
+			for(int i = 0; i < 10;i++) {
+				query = "Insert into items values("+(i+1)+",'"+fnames[i]+"',"+fprice[i] +")";
+				st.executeUpdate(query);
+			}
 			JOptionPane.showMessageDialog(null, "Database Created",
 		               "Welcome",1);
 			new MainWin();
 		}catch(Exception e) {
 			new MainWin();
+			System.out.println(e);
 //			String query = "INSERT INTO employee (id, name) VALUES(2314, 'faraz') ";
 //			st = conn.createStatement();
 //			int row = st.executeUpdate(query);
