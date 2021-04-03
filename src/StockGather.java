@@ -33,6 +33,7 @@ public class StockGather extends JFrame {
 	static	int currBalance = 0;
 	static int currDay = 0;
 	static int totalAmount; // amount to pay 
+	
 	/**
 	 * Launch the application.
 	 */
