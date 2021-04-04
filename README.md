@@ -1,4 +1,11 @@
 # Fast-Food-Business-Game
+##INFO
+This game made on eclipse IDE so you can!
+If you want to play the game then check out the folder named "play this game" to play the game but you need to install oracle database to start this game.
+I used all the free stock images in this game which is free to use in commercial purposes.
+
+###more details and info will be updated very soon!
+
 You can check the complete video on this project on my YouTube Channel :
 <a href="https://youtu.be/YZZELwFPQik">An Entertaining Database Project in JAVA- Fast Food Business Game in JAVA</a>
 
@@ -9,50 +16,22 @@ If you want to improve this Fast Food Business Game Database Project made in JAV
 
 You can read our article on our website on this topic: Coming Soon
 
-if you want more informative material, visit our website: https://technicalfaraz.com​
-
-If you want to play this Fast Food Business Game then check it out: https://github.com/Technical-Faraz/Fa...​
+if you want more informative material, visit our website: https://technicalfaraz.com
 
 The Code of this game will be uploaded very soon in the same place
 Visit our team members profiles:
 Noor Ahmed
-GitHub: https://github.com/Noor-Ahmed-12​
-Linkedin: https://www.linkedin.com/in/noor-ahme...​
+GitHub: https://www.linkedin.com/in/noor-ahmed-shaikh-2989691b4/
+Linkedin: https://github.com/Noor-Ahmed-12
 
 Haris
-GitHub: https://github.com/Muhammad-Haris-Arain​
-Linkedin: https://www.linkedin.com/in/haris-ara...​
+GitHub: https://github.com/Muhammad-Haris-Arain
+Linkedin: https://www.linkedin.com/in/haris-arain793/
 
 Ritik
-GitHub: https://github.com/Ritik786​
-Linkedin: https://www.linkedin.com/in/ritik-adv...​
+GitHub:https://github.com/Ritik786
+Linkedin: https://www.linkedin.com/in/ritik-advani-1570841a1/
 
-You can check my previous projects:
 
-1. Multiplayer game by using basics of c++
-https://youtu.be/8jKfGvP7Nx4​
-
-2. Steganography project in JAVA(hide any image behind another image)
-https://youtu.be/zwFR-aAyEc4​
-
-3. Binary Tree Racing Game Project in JAVA
-https://youtu.be/-jM1K9Amo6k​
-
-you can check out the course on making a game in c++
-https://www.youtube.com/playlist?list...​
-
-For more informative material follow us on:
-
-Facebook page: https://www.facebook.com/technicalfaraz/​
-Website: https://technicalfaraz.com​
-GitHub: https://github.com/Technical-Faraz​
-=========================================================
-►If you want more Videos like this then don't forget to subscribe my channel and also click on the bell icon
-
-►If you have any questions then you can ask me through comments and if you want any tutorial related to programming or any other knowledge related to computer  then you can ask me in the comment section below.
-
-§[Visit My channel]§ 
-
-https://www.youtube.com/channel/UCwO7...​
-
-#TechnicalFaraz
+Facebook page: https://www.facebook.com/technicalfaraz/
+Website: https://technicalfaraz.com
