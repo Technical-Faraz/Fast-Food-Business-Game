@@ -1,10 +1,11 @@
 # Fast-Food-Business-Game
-##INFO
+<h2>INFO</h2>
+
 This game made on eclipse IDE so you can!
 If you want to play the game then check out the folder named "play this game" to play the game but you need to install oracle database to start this game.
 I used all the free stock images in this game which is free to use in commercial purposes.
 
-###more details and info will be updated very soon!
+<h3>more details and info will be updated very soon!</h3>
 
 You can check the complete video on this project on my YouTube Channel :
 <a href="https://youtu.be/YZZELwFPQik">An Entertaining Database Project in JAVA- Fast Food Business Game in JAVA</a>
