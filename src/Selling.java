@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 
 import java.sql.*;
 import javax.swing.JTable;
+import java.awt.Toolkit;
 
 public class Selling extends JFrame {
 
@@ -60,6 +61,8 @@ public class Selling extends JFrame {
 	 * Create the frame.
 	 */
 	public Selling() {
+		setTitle("Fast Food Business Game by Technical Faraz");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Projects\\Fast Food Business Game\\Assets\\burger-icon.png"));
 		
 		try {
 			String query = "Select * from players";
@@ -133,7 +136,7 @@ public class Selling extends JFrame {
 							ResultSet rs = Database.st.executeQuery(query);	
 							if(rs.next() == true) {
 								int price = Integer.parseInt(Database.fprice[curr-1]);
-								earningOnDay += price + price*0.3;
+								earningOnDay += price + price*0.4;
 								query = "update stocks set amount =" +Integer.toString(rs.getInt(2) -1)+"where fid = "+curr+ "AND amount != 0";
 								Database.st.executeUpdate(query);
 								query = "delete stocks where amount = 0";
@@ -230,7 +233,7 @@ public class Selling extends JFrame {
 	public static void printTable() {
 		try {
 			String query = 
-					"select f.fname Item_name, (f.price + f.price*0.3) selling_price, s.amount from items f, stocks s where f.fid = s.fid";
+					"select f.fname Item_name, (f.price + f.price*0.4) selling_price, s.amount from items f, stocks s where f.fid = s.fid";
 			PreparedStatement pst = Database.conn.prepareStatement(query);
 			ResultSet rs = pst.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));

@@ -19,11 +19,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import java.sql.*;
+import java.awt.Toolkit;
 
 public class StockGather extends JFrame {
 
@@ -33,6 +35,7 @@ public class StockGather extends JFrame {
 	static	int currBalance = 0;
 	static int currDay = 0;
 	static int totalAmount; // amount to pay 
+	static ResultSet rs;
 	
 	/**
 	 * Launch the application.
@@ -41,8 +44,13 @@ public class StockGather extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new StockGather();
-					frame.setVisible(true);
+					initScreen();
+					if(endGame() != true) {
+						
+						frame = new StockGather();
+						frame.setVisible(true);
+					}
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,18 +62,11 @@ public class StockGather extends JFrame {
 	 * Create the frame.
 	 */
 	public StockGather() {
+		setTitle("Fast Food Business Game by Technical Faraz");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Projects\\Fast Food Business Game\\Assets\\burger-icon.png"));
 		//Database queries
 		
-		try {
-			String query = "Select * from players";
-			Database.st = Database.conn.createStatement();
-			ResultSet rs = Database.st.executeQuery(query);
-			rs.next();
-			currBalance = rs.getInt(3);
-			currDay = rs.getInt(4);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1077, 671);
@@ -432,5 +433,42 @@ public class StockGather extends JFrame {
 		lable1.setFont(new Font("Segoe UI Black", Font.PLAIN, 37));
 		lable1.setBounds(10, 11, 93, 66);
 		contentPane.add(lable1);
+		
+	}
+	public static boolean endGame() {
+		if(currDay == 5) {
+			try {
+				int loan = rs.getInt(2);
+				if(loan > currBalance) {
+					JOptionPane.showMessageDialog(null, "you haven't enough money to pay the loan",
+				               "You Lose the game",2);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "You paid the loan and your remaining balance is your high score : "+(currBalance -loan),
+				               "You Won the game",1);
+				}
+				
+				Database.st.close();
+				Database.conn.close();
+				frame.dispose();
+				
+			}catch(Exception e) {	
+				e.printStackTrace();
+			}
+			return true;
+		}
+		return false;
+	}
+	public static void initScreen() {
+		try {
+			String query = "Select * from players";
+			Database.st = Database.conn.createStatement();
+			 rs = Database.st.executeQuery(query);
+			rs.next();
+			currBalance = rs.getInt(3);
+			currDay = rs.getInt(4);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

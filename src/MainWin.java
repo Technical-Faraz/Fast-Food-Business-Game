@@ -20,10 +20,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import java.sql.*;
+import java.awt.Toolkit;
 
 public class MainWin {
 
-	JFrame frame;
+	JFrame frmFastFoodBusiness;
 
 	/**
 	 * Launch the application.
@@ -33,7 +34,7 @@ public class MainWin {
 			public void run() {
 				try {
 					MainWin window = new MainWin();
-					window.frame.setVisible(true);
+					window.frmFastFoodBusiness.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -55,47 +56,50 @@ public class MainWin {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(51, 51, 102));
-		frame.setBounds(100, 100, 807, 556);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		JOptionPane.showMessageDialog(null, "Made by Teamwork of Faraz, Noor, Haris, Ritik",
+	               "Welcome in the game",1);
+		JOptionPane.showMessageDialog(null, "For More Info about us Visit the website: TechnicalFaraz.com",
+	               "TechnicalFaraz.com",1);
+		frmFastFoodBusiness = new JFrame();
+		frmFastFoodBusiness.setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Projects\\Fast Food Business Game\\Assets\\burger-icon.png"));
+		frmFastFoodBusiness.setTitle("Fast Food Business Game by Technical Faraz");
+		frmFastFoodBusiness.getContentPane().setBackground(new Color(51, 51, 102));
+		frmFastFoodBusiness.setBounds(100, 100, 807, 556);
+		frmFastFoodBusiness.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmFastFoodBusiness.getContentPane().setLayout(null);
 		
 		JButton btnStart = new JButton("Start New Game");
 		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmFastFoodBusiness.dispose();
 				NewGame.start();
 				
 			}
 		});
 		btnStart.setBounds(304, 240, 204, 58);
-		frame.getContentPane().add(btnStart);
+		frmFastFoodBusiness.getContentPane().add(btnStart);
 		
 		JButton btnLoad = new JButton("Load the Game");
 		btnLoad.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnLoad.setBounds(304, 320, 204, 58);
-		frame.getContentPane().add(btnLoad);
+		frmFastFoodBusiness.getContentPane().add(btnLoad);
 		
 		JButton btnHelp = new JButton("HELP");
+		btnHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HelpWin.start();
+			}
+		});
 		btnHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnHelp.setBounds(304, 397, 204, 58);
-		frame.getContentPane().add(btnHelp);
+		frmFastFoodBusiness.getContentPane().add(btnHelp);
 		
 		JLabel bannerLbl = new JLabel("");
 		bannerLbl.setBackground(Color.LIGHT_GRAY);
 		bannerLbl.setBounds(0, 0, 800, 197);
 		Image bannerImg = new ImageIcon(this.getClass().getResource("/Banner.png")).getImage();
 		bannerLbl.setIcon(new ImageIcon(bannerImg));
-		frame.getContentPane().add(bannerLbl);
-		
-		JLabel lblNewLabel_1 = new JLabel("Made By Team Work:\r\nFaraz (05)\r\nHaris (23)\r\nNoor (24)\r\nRitik (103)");
-		lblNewLabel_1.setBounds(561, 208, 167, 247);
-		frame.getContentPane().add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("burger pic");
-		lblNewLabel_2.setBounds(10, 208, 284, 247);
-		frame.getContentPane().add(lblNewLabel_2);
+		frmFastFoodBusiness.getContentPane().add(bannerLbl);
 	}
 }

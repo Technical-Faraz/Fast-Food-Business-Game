@@ -21,6 +21,7 @@ import java.sql.*;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class NewGame extends JFrame {
 
@@ -47,6 +48,8 @@ public class NewGame extends JFrame {
 	 * Create the frame.
 	 */
 	public NewGame() {
+		setTitle("Fast Food Business Game by Technical Faraz");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("E:\\Projects\\Fast Food Business Game\\Assets\\burger-icon.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 565, 464);
 		contentPane = new JPanel();
