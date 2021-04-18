@@ -14,7 +14,30 @@ If you want to play the game then check out the folder named <a href="https://gi
 ### <a href="https://github.com/Ritik786">Ritik Advani</a><br>
 <br> 
 
-### :movie_camera:You can check the complete video of this project on my YouTube Channel :
+## Gameplay
+Before understanding the project, you should know the working of the project which means gameplay so let's check it
+
+#### :red_circle:In the start you will see the screen just like the below pic, click on start new game to start the game
+<img width="596" alt="1" src="https://user-images.githubusercontent.com/60597399/115141707-a9868700-9ff2-11eb-9f77-bc7bc175d1e2.png">
+<br>
+
+#### :red_circle:Now you have to take loan to start your business but remember you have to pay this loan after 4 days otherwise you will lose the game and the remaining amount after paying the loan will be your high score
+<img width="414" alt="2" src="https://user-images.githubusercontent.com/60597399/115141709-aab7b400-9ff2-11eb-99a2-d376cc4e2541.png">
+<br>
+
+#### :red_circle:Now Buy some stuff for selling on the day but be careful if your stuff won't be sold at that day then you won't be able to use it on next day.
+<img width="798" alt="3" src="https://user-images.githubusercontent.com/60597399/115141710-ab504a80-9ff2-11eb-9708-f0b1270692c5.png">
+<br>
+
+#### :red_circle:You have 10 orders per day and orders will be generated randomly minimum items will be zero and maximum will be one.
+<img width="665" alt="4" src="https://user-images.githubusercontent.com/60597399/115141714-b014fe80-9ff2-11eb-97c4-addb9ceeec03.png">
+<br>
+
+#### :red_circle:If you have the food which comes in the order then serve that food to earn money.
+<img width="665" alt="5" src="https://user-images.githubusercontent.com/60597399/115141705-a8555a00-9ff2-11eb-8b84-c9273166f54b.png">
+<br>
+
+## :movie_camera:You can check the complete working of the game in my video of this project on my YouTube Channel :
 [![Purple Bold Photo Gaming YouTube Thumbnail](https://user-images.githubusercontent.com/60597399/115135255-f7d45f80-9fcb-11eb-9684-6d6dc22ea9d2.png)](https://youtu.be/YZZELwFPQik)
 
 
