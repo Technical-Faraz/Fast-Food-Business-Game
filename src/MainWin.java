@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -13,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -80,9 +82,19 @@ public class MainWin {
 		btnStart.setBounds(304, 240, 204, 58);
 		frmFastFoodBusiness.getContentPane().add(btnStart);
 		
-		JButton btnLoad = new JButton("Load the Game");
+		JButton btnLoad = new JButton("visit our Website");
+		btnLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URL("https://technicalfaraz.com").toURI());
+				}catch(Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		});
 		btnLoad.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnLoad.setBounds(304, 320, 204, 58);
+		btnLoad.setBounds(304, 378, 204, 58);
 		frmFastFoodBusiness.getContentPane().add(btnLoad);
 		
 		JButton btnHelp = new JButton("HELP");
@@ -92,7 +104,7 @@ public class MainWin {
 			}
 		});
 		btnHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnHelp.setBounds(304, 397, 204, 58);
+		btnHelp.setBounds(304, 309, 204, 58);
 		frmFastFoodBusiness.getContentPane().add(btnHelp);
 		
 		JLabel bannerLbl = new JLabel("");
