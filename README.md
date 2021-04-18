@@ -5,7 +5,7 @@
 This game made using Eclipse IDE and GUI developed using Eclipse windows builder.
 
 ### :small_blue_diamond:Wanna play this Game?
-If you want to play the game then check out the folder named "play this game" OR "Fast Food Business Game" to play the game but you need to install oracle database to start this game.
+If you want to play the game then check out the folder named <a href="https://github.com/Technical-Faraz/Fast-Food-Business-Game/tree/master/Play%20this%20Game">"play this game"</a> OR <a href="https://github.com/Technical-Faraz/Fast-Food-Business-Game/tree/master/Fast%20Food%20Business%20Game">"Fast Food Business Game"</a> to play the game but you need to install oracle database to start this game.
 
 ### :small_blue_diamond:Team Members of this project
 ### <a href="https://github.com/Noor-Ahmed-12">Noor Ahmed Shaikh</a><br>
